@@ -21,6 +21,7 @@ import {GoogleauthService} from './shared/services/googleauth.service';
 import {AuthGuard} from './shared/services/auth-guard.service';
 import {UserService} from "./shared/services/user.service";
 import {AdminAuthGuardService} from "./shared/services/admin-auth-guard.service";
+import { ProductFormComponent } from './private-view/product-form/product-form.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {AdminAuthGuardService} from "./shared/services/admin-auth-guard.service"
     UserOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    LoginComponent
+    LoginComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +55,7 @@ import {AdminAuthGuardService} from "./shared/services/admin-auth-guard.service"
       {path: 'success-order', component: SuccessfulOrderComponent, canActivate: [AuthGuard]},
 
       {path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard, AdminAuthGuardService]},
+      {path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGuard, AdminAuthGuardService]},
       {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard, AdminAuthGuardService]},
     ])
   ],

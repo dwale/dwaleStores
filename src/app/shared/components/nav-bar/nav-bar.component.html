@@ -14,14 +14,15 @@
       <li>
         <a class="nav-link" routerLink="/cart">Shopping Cart</a>
       </li>
-      <li *ngIf="googleAuth.user$| async as user; else notLoggedIn" ngbDropdown class="nav-item dropdown ">
-        <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.displayName}}</a>
+      <li *ngIf="appUser; else notLoggedIn" ngbDropdown class="nav-item dropdown ">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{appUser.name}}</a>
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
           <a class="dropdown-item" routerLink="/my/orders">Orders</a>
+          <ng-container *ngIf="appUser.isAdmin">
           <a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
           <a class="dropdown-item" routerLink="/admin/products">Manage Products</a>
+          </ng-container>
           <a class="dropdown-item" href="" (click)="logOut()">LogOut</a>
-
         </div>
       </li>
     </ul>
