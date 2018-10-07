@@ -44,12 +44,14 @@ import {AuthGuard} from './shared/services/auth-guard.service';
       {path: '', component: HomeComponent},
       {path: 'products', component: ProductsComponent},
       {path: 'cart', component: ShoppingCartComponent},
-      {path: 'check-out', component: CheckoutComponent},
-      {path: 'success-order', component: SuccessfulOrderComponent},
       {path: 'login', component: LoginComponent},
-      {path: 'admin/products', component: AdminProductsComponent},
-      {path: 'admin/orders', component: AdminOrdersComponent},
-      {path: 'my/orders', component: UserOrdersComponent},
+
+      {path: 'my/orders', component: UserOrdersComponent, canActivate: [AuthGuard]},
+      {path: 'check-out', component: CheckoutComponent, canActivate: [AuthGuard]},
+      {path: 'success-order', component: SuccessfulOrderComponent, canActivate: [AuthGuard]},
+
+      {path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard]},
+      {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard]},
     ])
   ],
   providers: [GoogleauthService,
