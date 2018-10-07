@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import {Observable} from 'rxjs/Observable';
+import {GoogleauthService} from '../../services/googleauth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,17 +10,15 @@ import {Observable} from 'rxjs/Observable';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-  user$: Observable<firebase.User>;
 
-  constructor(private angularAuth: AngularFireAuth) {
-    this.user$ = angularAuth.authState;
+  constructor(public googleAuth: GoogleauthService) {
   }
 
   ngOnInit() {
   }
 
-  logOut() {
-    this.angularAuth.auth.signOut();
-  }
+ logOut() {
+    this.googleAuth.logOut();
+ }
 
 }

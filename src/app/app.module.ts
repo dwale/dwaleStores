@@ -17,6 +17,8 @@ import { AdminOrdersComponent } from './private-view/admin-orders/admin-orders.c
 import {RouterModule} from '@angular/router';
 import { LoginComponent } from './public-view/login/login.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {GoogleauthService} from './shared/services/googleauth.service';
+import {AuthGuard} from './shared/services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
       {path: 'my/orders', component: UserOrdersComponent},
     ])
   ],
-  providers: [],
+  providers: [GoogleauthService,
+              AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
