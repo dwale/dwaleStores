@@ -19,9 +19,12 @@ import { LoginComponent } from './public-view/login/login.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {GoogleauthService} from './shared/services/googleauth.service';
 import {AuthGuard} from './shared/services/auth-guard.service';
-import {UserService} from "./shared/services/user.service";
-import {AdminAuthGuardService} from "./shared/services/admin-auth-guard.service";
+import {UserService} from './shared/services/user.service';
+import {AdminAuthGuardService} from './shared/services/admin-auth-guard.service';
 import { ProductFormComponent } from './private-view/product-form/product-form.component';
+import {CategoriesService} from './private-view/services/categories.service';
+import {FormsModule} from '@angular/forms';
+import {ProductService} from './private-view/services/product.service';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,7 @@ import { ProductFormComponent } from './private-view/product-form/product-form.c
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    FormsModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
@@ -62,7 +66,9 @@ import { ProductFormComponent } from './private-view/product-form/product-form.c
   providers: [GoogleauthService,
               AdminAuthGuardService,
               AuthGuard,
-              UserService],
+              UserService,
+              CategoriesService,
+              ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
