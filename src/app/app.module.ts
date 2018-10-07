@@ -19,6 +19,7 @@ import { LoginComponent } from './public-view/login/login.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {GoogleauthService} from './shared/services/googleauth.service';
 import {AuthGuard} from './shared/services/auth-guard.service';
+import {UserService} from "./shared/services/user.service";
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import {AuthGuard} from './shared/services/auth-guard.service';
     ])
   ],
   providers: [GoogleauthService,
-              AuthGuard],
+              AuthGuard,
+              UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
