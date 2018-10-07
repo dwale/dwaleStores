@@ -20,6 +20,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {GoogleauthService} from './shared/services/googleauth.service';
 import {AuthGuard} from './shared/services/auth-guard.service';
 import {UserService} from "./shared/services/user.service";
+import {AdminAuthGuardService} from "./shared/services/admin-auth-guard.service";
 
 @NgModule({
   declarations: [
@@ -51,11 +52,12 @@ import {UserService} from "./shared/services/user.service";
       {path: 'check-out', component: CheckoutComponent, canActivate: [AuthGuard]},
       {path: 'success-order', component: SuccessfulOrderComponent, canActivate: [AuthGuard]},
 
-      {path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard]},
-      {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard]},
+      {path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard, AdminAuthGuardService]},
+      {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard, AdminAuthGuardService]},
     ])
   ],
   providers: [GoogleauthService,
+              AdminAuthGuardService,
               AuthGuard,
               UserService],
   bootstrap: [AppComponent]
