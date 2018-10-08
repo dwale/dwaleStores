@@ -25,6 +25,7 @@ import { ProductFormComponent } from './private-view/product-form/product-form.c
 import {CategoriesService} from './private-view/services/categories.service';
 import {FormsModule} from '@angular/forms';
 import {ProductService} from './private-view/services/product.service';
+import {CustomFormsModule} from 'ng2-validation';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import {ProductService} from './private-view/services/product.service';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     FormsModule,
+    CustomFormsModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
@@ -58,8 +60,9 @@ import {ProductService} from './private-view/services/product.service';
       {path: 'check-out', component: CheckoutComponent, canActivate: [AuthGuard]},
       {path: 'success-order', component: SuccessfulOrderComponent, canActivate: [AuthGuard]},
 
-      {path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard, AdminAuthGuardService]},
       {path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGuard, AdminAuthGuardService]},
+      {path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard, AdminAuthGuardService]},
+      {path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AuthGuard, AdminAuthGuardService]},
       {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard, AdminAuthGuardService]},
     ])
   ],
