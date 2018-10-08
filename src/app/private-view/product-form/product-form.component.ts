@@ -11,6 +11,7 @@ import 'rxjs/add/operator/take';
 })
 export class ProductFormComponent implements OnInit {
   categories$;
+  id;
   product = {title: '',
   price: 0,
   category: '',
@@ -18,10 +19,10 @@ export class ProductFormComponent implements OnInit {
   constructor(private route: ActivatedRoute, categoryService: CategoriesService, private productService: ProductService, private router: Router) {
     this.categories$ = categoryService.getCategories();
     console.log('Cats', this.categories$);
-    const id = this.route.snapshot.paramMap.get('id');
+     this.id = this.route.snapshot.paramMap.get('id');
 
-    if (id) {
-      this.productService.getProduct(id).take(1).subscribe(p => this.product = p);
+    if (this.id) {
+      this.productService.getProduct(this.id).take(1).subscribe(p => this.product = p);
     }
   }
 
@@ -29,7 +30,11 @@ export class ProductFormComponent implements OnInit {
   }
 
   saveProduct(product) {
-  this.productService.createProduct(product);
-  this.router.navigate(['/admin/products/']);
+    if (this.id) {
+      this.productService.update(this.id, this.product);
+    } else {
+      this.productService.createProduct(product);
+    }
+    this.router.navigate(['/admin/products/']);
   }
 }
